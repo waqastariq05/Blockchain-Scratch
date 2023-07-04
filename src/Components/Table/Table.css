@@ -1,0 +1,14 @@
+.table {
+  margin-bottom: 50px;
+}
+.table thead th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.table tbody tr td {
+  text-transform: capitalize;
+}
+.table tbody tr th a {
+  text-decoration: none;
+  color: #000;
+}

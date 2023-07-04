@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./Components/Navbar/Navbar";
+import BlockchainState from "./Context/BlockchainState";
+import AddBlock from "./Pages/AddBlock";
+import Home from "./Pages/Home";
+import { Route, Routes } from "react-router-dom";
+import Search from "./Pages/Search";
+import Detail from "./Components/Detail/Detail";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BlockchainState>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/mineBLock" element={<AddBlock />} />
+          <Route path="/detailBlock/:id" element={<Detail />} />
+          <Route path="/searchBlock" element={<Search />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BlockchainState>
   );
 }
 

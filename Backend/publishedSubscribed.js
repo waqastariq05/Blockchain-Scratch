@@ -1,7 +1,6 @@
 const redis = require("redis");
 
 const CHANNELS = {
-  TEST: "TEST",
   BLOCKCHAIN: "BLOCKCHAIN",
 };
 
@@ -11,7 +10,6 @@ class PubSub {
     this.publisher = redis.createClient();
     this.subscriber = redis.createClient();
 
-    this.subscriber.subscribe(CHANNELS.TEST);
     this.subscriber.subscribe(CHANNELS.BLOCKCHAIN);
 
     this.subscriber.on("message", (channel, message) =>

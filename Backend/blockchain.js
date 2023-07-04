@@ -7,10 +7,11 @@ class Blockchain {
   }
 
   //   Add multiple block in blockchain
-  addBlock({ data }) {
+  addBlock({ name, data }) {
     const newBlock = Block.mineBlock({
       prevBlock: this.chain[this.chain.length - 1],
-      data,
+      name: name,
+      data: data,
     });
     this.chain.push(newBlock);
   }
@@ -34,13 +35,24 @@ class Blockchain {
       return false;
     }
     for (let i = 1; i < chain.length; i++) {
-      const { timestamp, prevHash, hash, nonce, diffculty, data } = chain[i];
+      const {
+        blockNo,
+        name,
+        timestamp,
+        prevHash,
+        hash,
+        nonce,
+        diffculty,
+        data,
+      } = chain[i];
       const lastDiffculty = chain[i - 1].diffculty;
       const lastHash = chain[i - 1].hash;
 
       if (prevHash !== lastHash) return false;
 
       const validateHash = cryptoHash(
+        blockNo,
+        name,
         timestamp,
         prevHash,
         nonce,
@@ -54,12 +66,5 @@ class Blockchain {
     return true;
   }
 }
-
-const blockchain = new Blockchain();
-blockchain.addBlock({ data: "Block1" });
-blockchain.addBlock({ data: "Block2" });
-const res = Blockchain.validateChain(blockchain.chain);
-// console.log(blockchain);
-// console.log(res);
 
 module.exports = Blockchain;

@@ -1,0 +1,63 @@
+.loading {
+  padding-top: 30px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #000;
+}
+
+.detail .top {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.detail .top .card {
+  width: 110px;
+  height: 110px;
+}
+
+.detail .top .card:hover {
+  transform: scale(1);
+}
+
+.detail .top .cardLine::before {
+  display: none;
+}
+
+.detail .top .card-body {
+  display: none;
+}
+
+.detail .top h2 {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Roboto";
+  color: #000;
+  margin-top: 15px;
+  margin-bottom: 2px;
+}
+
+.detail .top p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #777;
+  margin-bottom: 0;
+}
+
+.detail .body {
+  border-top: 1px solid #ddd;
+  padding: 20px 0 5px;
+}
+.detail .body h4 {
+  font-size: 20px;
+  font-family: "Roboto";
+  font-weight: 700;
+  color: #000;
+}
+.detail .body ul {
+  list-style: none;
+  padding: 0;
+}
+.detail .body ul li {
+  padding: 5px 10px;
+  font-size: 16px;
+}

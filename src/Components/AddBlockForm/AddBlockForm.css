@@ -1,0 +1,37 @@
+.addBlock {
+  padding: 0 20%;
+}
+.addBlock .top {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.addBlock .top h2 {
+  font-size: 45px;
+  font-weight: 700;
+  font-family: "Alkatra";
+}
+
+@media (max-width: 647px) {
+  .addBlock {
+    padding: 0 10%;
+  }
+}
+
+@media (max-width: 620px) {
+  .addBlock {
+    padding: 10% 10%;
+  }
+}
+
+@media (max-width: 539px) {
+  .addBlock {
+    padding: 0% 10% 10% 10%;
+  }
+}
+
+@media (max-width: 320px) {
+  .addBlock .top h2 {
+    font-size: 40px;
+  }
+}

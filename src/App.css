@@ -1,38 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+:root {
+  --blue: rgb(115, 73, 242);
+  --dark-blue: rgb(73, 28, 207);
+  --black: #242d49;
+  --cardColor: linear-gradient(
+      21deg,
+      rgba(181, 154, 255, 0.8),
+      rgba(181, 154, 255, 0.2) 10.71%
+    ),
+    linear-gradient(
+      213.6deg,
+      rgba(158, 117, 255, 0.8),
+      rgba(255, 255, 255, 0) 70.71%
+    ),
+    linear-gradient(
+      142.4deg,
+      rgba(150, 195, 255, 0.8),
+      rgba(154, 173, 255, 0.2) 70.71%
+    ),
+    linear-gradient(
+      37deg,
+      rgba(211, 99, 255, 0.8),
+      rgba(128, 168, 255, 0.2) 70.71%
+    );
+}
+
+.pad-56 {
+  padding: 0.5rem 3.5rem;
+  overflow: hidden;
+}
+
 .App {
-  text-align: center;
+  font-family: "open sans";
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 67px;
+}
+a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+input:focus,
+input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #dee2e6 !important;
+}
+textarea:focus,
+textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #dee2e6 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn {
+  background: var(--blue);
+  border-radius: 34px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 30px 10px 30px;
+  text-transform: capitalize;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.btn:hover {
+  transition: 0.4s ease;
+  background: var(--dark-blue);
+  cursor: pointer;
+  color: #fff;
+}
+.btn:focus-visible {
+  color: #fff;
+  background: var(--dark-blue);
+  box-shadow: none;
+}
+.btn:active {
+  background: var(--dark-blue);
+}
+
+@media (max-width: 836.98px) {
+  .App {
+    margin-top: 140px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 480px) {
+  .pad-56 {
+    padding: 0.5rem 1.5rem;
   }
-  to {
-    transform: rotate(360deg);
+  .btn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 540.98px) {
+  .App {
+    margin-top: 190px;
   }
 }

@@ -1,38 +1,75 @@
 const { genesisBlock, mine_rate } = require("./config");
+const { finalDateTimeString } = require("./getMineDate");
 const cryptoHash = require("./cryptoHash");
-const hexToBinary = require("hex-to-binary");
 
 class Block {
-  constructor({ timestamp, data, prevHash, hash, nonce, diffculty }) {
+  constructor({
+    blockNo,
+    name,
+    timestamp,
+    data,
+    prevHash,
+    hash,
+    mineTime,
+    date,
+    nonce,
+    diffculty,
+  }) {
+    this.blockNo = blockNo;
+    this.name = name;
     this.timestamp = timestamp;
     this.data = data;
     this.prevHash = prevHash;
     this.hash = hash;
+    this.mineTime = mineTime;
+    this.date = date;
     this.nonce = nonce;
     this.diffculty = diffculty;
   }
   static genesis() {
     return new this(genesisBlock);
   }
-  static mineBlock({ prevBlock, data }) {
-    let hash, timestamp;
+  static mineBlock({ prevBlock, name, data }) {
+    if (name === "") {
+      name = "unknown";
+    }
+    let hash, timestamp, mineTime;
     const prevHash = prevBlock.hash;
 
     let { diffculty } = prevBlock;
+    let { blockNo } = prevBlock;
     let nonce = 0;
+    blockNo++;
     do {
       nonce++;
       timestamp = Date.now();
-      diffculty = this.adjustDiffculty({ originalBlock: prevBlock, timestamp });
-      hash = cryptoHash(timestamp, prevHash, nonce, diffculty, data);
-    } while (
-      hexToBinary(hash).substring(0, diffculty) !== "0".repeat(diffculty)
-    );
+      mineTime = timestamp - prevBlock.timestamp;
+      diffculty = Block.adjustDiffculty({
+        originalBlock: prevBlock,
+        timestamp,
+      });
+      if (diffculty < 1) {
+        diffculty = 1;
+      }
+      hash = cryptoHash(
+        blockNo,
+        name,
+        timestamp,
+        prevHash,
+        nonce,
+        diffculty,
+        data
+      );
+    } while (hash.substring(0, diffculty) !== "0".repeat(diffculty));
 
     return new this({
+      blockNo,
+      name,
       timestamp,
       prevHash,
       data,
+      mineTime,
+      date: finalDateTimeString,
       nonce,
       diffculty,
       hash,
@@ -41,26 +78,12 @@ class Block {
 
   static adjustDiffculty({ originalBlock, timestamp }) {
     const { diffculty } = originalBlock;
-    if (diffculty < 1) return 1;
-
     const difference = timestamp - originalBlock.timestamp;
-    if (difference > mine_rate) return diffculty - 1;
-
+    if (difference > mine_rate) {
+      return diffculty - 1;
+    }
     return diffculty + 1;
   }
 }
-
-// const block1 = new Block({
-//   timestamp: "1",
-//   data: "hello",
-//   prevHash: "123",
-//   hash: "456",
-// });
-
-// const Genesis_Block = Block.genesis();
-// console.log(Genesis_Block);
-
-// const res = Block.mineBlock({ prevBlock: block1, data: "block2" });
-// console.log(res);
 
 module.exports = Block;
